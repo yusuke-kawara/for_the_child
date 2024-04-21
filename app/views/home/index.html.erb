@@ -1,2 +1,98 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>For the child</h1>
+
+<div>
+  <%= link_to 'ちがう、ちがう、まだマック！', '#', id: 'play-mac', class: 'play-sound' %>
+</div>
+<div>
+  <%= link_to 'ん？ コンビニだよ...', '#', id: 'play-fm', class: 'play-sound' %>
+</div>
+<div>
+  <%= link_to 'GRATE SOUND!!', '#', id: 'play-he', class: 'play-sound' %>
+</div>
+<div>
+  <%= link_to 'やってないよ..', '#', id: 'play-hotaru', class: 'play-sound' %>
+</div>
+<div>
+  <%= link_to 'ママ回避拳！！', '#', id: 'play-mamagekitai', class: 'play-sound' %>
+</div>
+<div>
+  <%= link_to 'あっちじゃない？？', '#', id: 'play-mamayonderuyo', class: 'play-sound' %>
+</div>
+<div>
+  <%= link_to '無理！無理！今地球守ってる！!', '#', id: 'play-maou', class: 'play-sound' %>
+</div>
+<div>
+  <%= link_to 'まだ学校だもん', '#', id: 'play-tyaim', class: 'play-sound' %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 各音声ファイル用のAudioオブジェクトを保持するオブジェクト
+    window.audioObjects = {};
+
+    function toggleAudio(audioId, filePath) {
+      // Audioオブジェクトがまだなければ作成
+      if (!window.audioObjects[audioId]) {
+        window.audioObjects[audioId] = new Audio(filePath);
+      }
+      
+      var audio = window.audioObjects[audioId];
+
+      // 再生中なら停止、停止中なら再生
+      if (!audio.paused) {
+        audio.pause();
+        audio.currentTime = 0;  // 再生位置を最初に戻す
+      } else {
+        // 他の再生中の音声を停止
+        Object.values(window.audioObjects).forEach(function(otherAudio) {
+          if (!otherAudio.paused) {
+            otherAudio.pause();
+            otherAudio.currentTime = 0;
+          }
+        });
+        audio.play();
+      }
+    }
+
+    // イベントリスナーを設定
+    document.getElementById('play-mac').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('mac', '<%= asset_path("mac.mp3") %>');
+    });
+
+    document.getElementById('play-fm').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('fm', '<%= asset_path("FM.mp3") %>');
+    });
+
+    document.getElementById('play-he').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('he', '<%= asset_path("he.mp3") %>');
+    });
+
+    document.getElementById('play-hotaru').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('hotaru', '<%= asset_path("hotaru.mp3") %>');
+    });
+
+    document.getElementById('play-mamagekitai').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('mamagekitai', '<%= asset_path("mamagekitai.mp3") %>');
+    });
+
+    document.getElementById('play-mamayonderuyo').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('mamayonderuyo', '<%= asset_path("mamayonderuyo.mp3") %>');
+    });
+
+    document.getElementById('play-maou').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('maou', '<%= asset_path("maou.mp3") %>');
+    });
+
+    document.getElementById('play-tyaim').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleAudio('tyaim', '<%= asset_path("tyaim.mp3") %>');
+    });
+  });
+</script>
