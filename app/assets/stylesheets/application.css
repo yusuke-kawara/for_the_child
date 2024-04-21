@@ -14,7 +14,7 @@
  *= require_self
  */
 body {
-    background: image-url('/assets/kawa.jpg') no-repeat center center fixed;
+    background: url('/assets/kawa.jpg') no-repeat center center fixed;
     background-size: cover;
   }
 
