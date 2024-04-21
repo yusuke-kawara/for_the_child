@@ -14,9 +14,9 @@
  *= require_self
  */
 body {
-    background: url('/assets/kawa.jpg') no-repeat center center fixed;
-    background-size: cover;
-  }
+  background: image-url('kawa.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
 
 .rock-text {
     font-size: 40px;
